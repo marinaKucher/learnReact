@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-
 function App() {
   return (
     <div className="App">
@@ -17,6 +16,7 @@ function App() {
         >
           Learn React
         </a>
+        <p><h1>для нового комита и пуша</h1></p>
       </header>
     </div>
   );
