@@ -1,5 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import AddButton from "./AddButton";
+import React from "react";
+
+function MoreButtons(props) {
+  const numbers = props.numbers;
+  const masOfButtons = numbers.map((number) =>
+     <AddButton key={number.toString()} text = {number}/>
+  );
+  return (
+     masOfButtons
+  );
+}
+
 function App() {
   return (
     <div className="App">
@@ -16,7 +29,8 @@ function App() {
         >
           Learn React
         </a>
-        <p><h1>для нового комита и пуша</h1></p>
+        <MoreButtons numbers={[1,2,3,4,5]}/>
+        <AddButton text="еще одна"/>
       </header>
     </div>
   );
