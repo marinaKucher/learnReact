@@ -17,12 +17,13 @@ function MoreButtons(props) {
 
 function ModalWindowMarker(props) {
 
-    if (props.modalmarkerPR) {
-        return <ModalWindow text={"условно созданое модальное окно "}/>
-    } else {
-        return <AddButton text={"условно созданая кнопка"}/>
+    if (props.isOpen) {
+        return <ModalWindow text={"условно созданое модальное окно "} close={props.delfunc}/>
     }
+    return  null
 }
+
+
 
 function App() {
     const [open, setOpen] = useState(true);
@@ -49,7 +50,7 @@ function App() {
                 </div>
 
             </div>
-            <ModalWindowMarker modalmarkerPR={open}/>
+            <ModalWindowMarker isOpen={open} delfunc={delCard}/>
         </div>
     );
 }
