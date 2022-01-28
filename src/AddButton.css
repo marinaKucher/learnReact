@@ -1,6 +1,5 @@
 .addbutton {
     text-decoration: none;
-    display: inline-block;
     color: white;
     padding: 20px 30px;
     margin: 10px 20px;
@@ -12,4 +11,7 @@
     background-size: 200% auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, .1);
     transition: .5s;
+    width: 150px;
+    height: 100px;
+
 }
