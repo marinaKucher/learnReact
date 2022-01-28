@@ -1,83 +1,57 @@
 import './App.css';
 import AddButton from "./AddButton";
 import ModalWindow from "./modalWindow";
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-let modalMarker=false;
-
-
-function addCard(){
-    console.log(modalMarker)
-    modalMarker=true;
-    globalSetFlagState(true)
-  console.log('добавление карточки')
-    console.log(modalMarker)
-}
-
-function delCard(){
-    console.log(modalMarker)
-  console.log('удаление карточки')
-
-    globalSetFlagState(false)
-    modalMarker=false;
-
-    console.log(modalMarker)
-
-}
-function goAnotherPage(){
-  console.log('переход на другую страницу')
-}
-function chCard(){
-  console.log('изменение карточки')
-}
-
-const buttons = [
-  {title: 'добавить карточку', handleClick: addCard},
-  {title: 'удалить карточку', handleClick: delCard},
-  {title: 'переход на другую страницу', handleClick:goAnotherPage},
-  {title: 'изменение карточки', handleClick: chCard},
-]
-
+const buttonsTitles = ['добавить карточку', 'удалить карточку', 'переход на другую страницу', 'изменение карточки']
 
 function MoreButtons(props) {
-  const numbers = props.numbers;
-  const masOfButtons = numbers.map((number) =>
-     <AddButton key={number.toString()} text = {buttons[number-1].title} handleClick={buttons[number-1].handleClick}/>
-  );
-  return (
-     masOfButtons
-  );
+    const numbers = props.numbers;
+    const masOfButtons = numbers.map((number) =>
+        <AddButton key={number.toString()} text={buttonsTitles[number - 1]} handleClick={props.functions[number - 1]}/>
+    );
+    return (
+        masOfButtons
+    );
 }
 
-let globalSetFlagState
-
 function ModalWindowMarker(props) {
-    const [flagState, setFlagState] = useState(props.modalmarkerPR);
 
-    globalSetFlagState = setFlagState
-
-    if (flagState) {
+    if (props.modalmarkerPR) {
         return <ModalWindow text={"условно созданое модальное окно "}/>
     } else {
         return <AddButton text={"условно созданая кнопка"}/>
     }
 }
 
-
 function App() {
-  return (
-    <div className="App">
-      <div className="MainBody">
-      <div className="buttonsContainer">
-        <MoreButtons numbers={[1,2,3,4]}/>
-      </div >
-      <div className="ModalWindowContainer">
-      </div >
+    const [open, setOpen] = useState(true);
 
-      </div>
-        <ModalWindowMarker modalmarkerPR={modalMarker}/>
-    </div>
-  );
+    const addCard = () => setOpen(true);
+    const delCard = () => setOpen(false);
+
+    function goAnotherPage() {
+        console.log('переход на другую страницу')
+    }
+
+    function chCard() {
+        console.log('изменение карточки')
+    }
+
+    return (
+
+        <div className="App">
+            <div className="MainBody">
+                <div className="buttonsContainer">
+                    <MoreButtons numbers={[1, 2, 3, 4]} functions={[addCard, delCard, goAnotherPage, chCard]}/>
+                </div>
+                <div className="ModalWindowContainer">
+                </div>
+
+            </div>
+            <ModalWindowMarker modalmarkerPR={open}/>
+        </div>
+    );
 }
 
 export default App;
