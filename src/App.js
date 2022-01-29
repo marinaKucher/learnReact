@@ -62,9 +62,9 @@ function App() {
                     <div class="header__logo">Rest Menu</div>
                     <div class="header__social">
                         <a class="a_href" href="#" >
-                            <i class="fa fa-twitter" ></i>
-                            <i class="fa fa-facebook" ></i>
-                            <i class="fa fa-instagram" ></i>
+                            <i class="fa fa-twitter" />
+                            <i class="fa fa-facebook" />
+                            <i class="fa fa-instagram" />
                         </a>
                     </div>
                 </div>
@@ -95,9 +95,9 @@ function App() {
             <div class="footertext">НАШИ СОЦСЕТИ :  </div>
             <div class="footer__social">
                 <a class="a_href" href="#" >
-                    <i class="fa fa-twitter" ></i>
-                    <i class="fa fa-facebook" ></i>
-                    <i class="fa fa-instagram" ></i>
+                    <i class="fa fa-twitter" />
+                    <i class="fa fa-facebook" />
+                    <i class="fa fa-instagram" />
                 </a>
             </div>
         </footer>
