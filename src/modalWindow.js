@@ -1,10 +1,10 @@
-import './ModalWindowStyle.css';
+import './ModalWindow.css';
 
 function ModalWindow(props) {
   //  const text = ""+props.text;
     return (
         <div className="modal" > {props.text}
-            <button onClick={props.close} > закрыть </button>
+            <button className="modalButtons" onClick={props.close} > закрыть </button>
         </div>
 
     );

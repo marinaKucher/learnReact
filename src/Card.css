@@ -1,0 +1,11 @@
+.card{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 20%;
+    height: 40%;
+    border-width: 1px;
+    border-style:double;
+    border-color: white;
+    border-radius: 5%;
+
+}

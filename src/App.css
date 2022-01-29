@@ -1,37 +1,395 @@
-.App {
-  text-align: center;
-  height:100%;
+
+/*--------body-----------------------------------------------------------------------------------------------------*/
+body {
+  font-family:'Grechen Fuemen', cursive;/*шрифт из установленных в гугл шрифтах - имеет линки в html*/
+  font-size: 14px; /*стандартный размер шрифта*/
+  color: rgb(238, 238, 238);
+  line-height: 1.6; /*стандартный оттуп меду строчками*/
+
+  margin: 0; /*убираем все мержины*/
+  height: 100vh;
+
+}
+
+/*-------spesific_settings_h_and_all_elemtnts-----------------------------------------------------------------------------------------------------*/
+h1,h2,h3,h4,h5,h6 {
+  /*все аш заголовки имеют мерджины по умолчанию,
+  поэтому их необходимо сбросить, чтобы они нам немешали*/
+  margin: 0;
+}
+
+*,
+*:after,
+*:before { /*для всех элементов в том числе 
+    псевдоэлементов бифор и афте*/
+  box-sizing: border-box;
+  /*
+  content-box даёт стандартное поведение свойства
+  box-sizing. Если вы выставите элементу ширину 100
+   пикселей, то ширина его контента будет 100
+    пикселей, а ширина границ и внутренних
+    отступов при рендере будет добавлена к
+    финальной ширине, делая элемент шире ста
+    пикселей.
+
+  border-box говорит браузеру учитывать любые
+  границы и внутренние отступы в значениях,
+  которые вы указываете в ширине и высоте элемента.
+  Если вы выставите элементу ширину 100 пикселей,
+  то эти 100 пикселей будут включать в себя границы
+  и внутренние отступы, а контент сожмётся,
+  чтобы выделить для них место. Обычно это
+  упрощает работу с размерами элементов.
+
+  Примечание: Часто выставление box-sizing:
+  border-box полезно для размещения элементов.
+  Оно сильно упрощает работу с размерами
+  элементов, и как правило устраняет ряд
+  подводных камней, на которые вы можете
+  наткнуться, размещая контент. С другой
+  стороны, используя position-relative
+  или position: absolute, box-sizing:
+  content-box позволяет позиционным
+  значениям быть зависимыми только от
+  контента, а не от границ и отступов,
+  что иногда желательно.*/
+}
+
+
+
+
+/*--------intro-----------------------------------------------------------------------------------------------------*/
+/*intro*/
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* justify-content: flex-start;*/
+  position: relative;
+
   width: 100%;
+  height: 100vh;/*высота будет занимать сто процентов высоты блока посетителя сайта*/
+  max-height: 100vh;
+  background-color: rgb(121, 115, 91);
+  background-size: 100% auto;
+}
+/*--------intro__header__inner-----------------------------------------------------------------------------------------------------*/
+/*header*/
+.header {
+
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 10vh;
+  /*Любые позиционированные элементы на веб-странице
+  могут накладываться друг на друга в определенном
+  порядке, имитируя тем самым третье измерение,
+  перпендикулярное экрану. Каждый элемент может
+  находиться как ниже, так и выше других объектов
+  веб-страницы, их размещением по z-оси и управляет
+  z-index. Это свойство работает только для
+  элементов, у которых значение position задано
+  как absolute, fixed или relative.*/
+  background-color: rgba(75, 75, 75, 0.473);
+  /*в данном случае четко задается имменно цвет фона,
+  а если делать через опасити то надписи
+   тоже станут полупрозрачными*/
 }
 
-.App-header {
-  background-color: #282c34;
-  height: 100px;
-  font-size: calc(10px + 2vmin);
+/*container */
+.container {
+  margin: 0  auto;
+  width: 100%;
+  max-width: 1260px;
+}
+
+.header__inner{
+  display: flex;
+  justify-content: space-between;
+  /*выравнивание элементов рамерно первый элемент вначале последний в конце*/
+  align-items: center; /*выравнивание
+    элементов в середине линии (по высоте, 
+    чтоб не был один в одном углу другой ниже на 10 пикселей*/
+}
+
+.header__logo {
+  font-family: 'Grey Qo', cursive;/*шрифт из установленных в гугл шрифтах - имеет линки в html*/
+  font-size: 40px; /* размер шрифта в пикселях*/
+  color: rgb(238, 238, 238);
+}
+
+.nav{
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.nav__link {
+  display: inline-block;
+  vertical-align: top;
+
+  margin:0 0 0 0;
+
+  font-family: 'Antic Slab', serif;
+  color: rgb(238, 238, 238);
+  text-decoration: none;
+  transition: font-weight .2s;
+
+
+}
+
+.nav__link:after {
+  font-weight: bold;
   color: white;
+
+  margin-right: 20px;
+  margin-left: 20px;
+  width: 100%;
+
+  content: "~";
 }
 
-.MainBody {
-  background-color: #a1d56b;
+.nav__link:last-child:after {
+  content: "";
+}
+
+.nav__link:hover {
+  font-weight: bold;
+}
+
+.header__social{
+  display: inline-block;
+}
+
+.fa{
+
+  font-size:15px;
+  color:rgb(255, 255, 255);
+
+  margin-left: 15px;
+}
+
+.fa.fa-twitter:hover:before{
+  color:rgb(104, 127, 255);
+}
+
+.fa.fa-facebook:hover:before{
+  color:rgb(0, 28, 184);
+}
+
+.fa.fa-instagram:hover:before{
+  background: linear-gradient(rgb(252, 9, 122), rgb(236, 253, 0));
+  border-radius: 30%;
+}
+
+.fa.fa-instagram:active{
+  text-decoration: none;
+}
+
+.a_href{
+  text-decoration: none;
+}
+/*-------------------intro__content-----------------------------------------------------------------------------------------------------*/
+.intro__content__conteiner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 80vh;
+
+  background-color: rgba(97, 96, 96, 0.3);
+  box-shadow: 0 0 30px 30px rgba(97, 96, 96, 0.3);
+}
+
+.intro__title{
+  width: 100%;
+  max-width: 800px;
+
+  font-family: 'Antic Slab', serif;
+  font-size: 65px;
+  color: white;
+  text-align: center;
+}
+
+.intro__title:after{
+  display:flex;
+
+  margin: 0 auto; /*выравнивает контент по центру*/
+  margin-top: 40px;
+  width: 230px;
+  height: 3px;
+
+  content: "";
+  background-color: rgba(255, 255, 255, 0.6);
+
+}
+
+.intro__dashed__line{
+  display:flex;
+
+  margin: 0 auto; /*выравнивает контент по центру*/
+  margin-top: 20px;
+}
+
+.intro__text{
+  margin-top: 60px;
+  width: 100%;
+  max-width: 800px;
+
+  font-family: 'Antic Slab', serif;
+  font-size: 20px;
+  font-weight:100;
+  color: white;
+  text-align: center;
+}
+
+.intro__button{
+  margin: 0 auto;
+  margin-top: 70px;
+  width: 100%;
+  max-width: 200px;
+  height: 50px;
+
+  background-color: rgba(85, 85, 85, 0.4);
+
+  border-width: 1px; /* Толщина линии внизу */
+  border-style: dashed; /* Стиль линии внизу */
+  border-color: white; /* Цвет линии внизу*/
+
+  font-family: 'Antic Slab', serif;
+  font-size: 13px;
+  font-weight:100;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.intro__button:hover{
+  background-color: rgba(85, 85, 85, 0.7);
+}
+/*------------------footer--------------------------------------------------------------------------------*/
+.footer{
+  background-color:  rgba(75, 75, 75, 0.473);
+  height: 60px;
+  margin-top: 5vh;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items:flex-start;
-  justify-content: space-between;
-  height:100%;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  /*  position: relative;
+
+   
+    
+    margin-top:  calc(100% - 80px);
+    width: 100%;
+    height: 50px;
+  /*  margin-bottom: 0px;*/
+  /*z-index: 1000;
+    background-color: rgba(75, 75, 75, 0.473); */
 }
 
-.buttonsContainer{
-  background-color: #638d34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.footer__social{
+  display: block;
 }
-.ModalWindowContainer{
-  background-color: #638d34;
+
+.footertext {
+  display: inline-block;
+  vertical-align: top;
+
+
+  font-family: 'Antic Slab', serif;
+  color: rgb(238, 238, 238);
+  text-decoration: none;
+  transition: font-weight .2s;
+
+
+}
+/*------------------------------maincontant----------------------------------*/
+.maincontant{
+  margin-top: 5vh;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 70%;
+}
+.buttonsmenu{
+  width: 20%;
+  height: 100%;
+  display: flex;
+
+  justify-content:flex-start;
   flex-direction: column;
   align-items: center;
+}
+
+.cardcontainer
+{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+.cardcontent{
+  width: 100%;
+  height: 90%;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+
+}
+
+.cardfooter{
+  width: 100%;
+  height:10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: white;
+
+}
+
+.cardfooterbutton{
+  width: 50%;
+  height: 80%;
+
+  background-color: rgba(85, 85, 85, 0.4);
+
+  border-width: 1px;
+  border-style: dashed;
+  border-color: white;
+
+  font-family: 'Antic Slab', serif;
+  font-size: 13px;
+  font-weight:100;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cardfooterbutton:hover{
+  background-color: rgba(49, 49, 49, 0.842);
+}
+.modalWindowContainer{
+  position: absolute;
+  z-index: 1000;
+  width: 50%;
+  height: 40%;
 }
