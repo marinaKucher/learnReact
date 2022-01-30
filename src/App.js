@@ -54,29 +54,29 @@ function App() {
             <ModalWindowMarker isOpen={open} delfunc={delCard}/>
         </div>*/
     <body>
-    <div class="intro">
+    <div className="intro">
 
-        <header class="header">
-            <div class="container">
-                <div class="header__inner">
-                    <div class="header__logo">Rest Menu</div>
-                    <div class="header__social">
-                        <a class="a_href" href="#" >
-                            <i class="fa fa-twitter" />
-                            <i class="fa fa-facebook" />
-                            <i class="fa fa-instagram" />
+        <header className="header">
+            <div className="container">
+                <div className="header__inner">
+                    <div className="header__logo">Rest Menu</div>
+                    <div className="header__social">
+                        <a className="a_href" href="#" >
+                            <i className="fa fa-twitter" />
+                            <i className="fa fa-facebook" />
+                            <i className="fa fa-instagram" />
                         </a>
                     </div>
                 </div>
             </div>
         </header>
 
-        <div class="maincontant">
-            <div class="buttonsmenu">
+        <div className="maincontant">
+            <div className="buttonsmenu">
                 <MoreButtons numbers={[1, 2, 3, 4]} functions={[addCard, delCard, goAnotherPage, chCard]}/>
             </div>
-            <div class="cardcontainer">
-                <div class="cardcontent">
+            <div className="cardcontainer">
+                <div className="cardcontent">
                     <Card/>
                     <Card/>
                     <Card/>
@@ -85,19 +85,19 @@ function App() {
                     <Card/>
 
                 </div>
-                <div class="cardfooter">
-                    <button class="cardfooterbutton">следующая страница с карточками ---></button>
+                <div className="cardfooter">
+                    <button className="cardfooterbutton">следующая страница с карточками ---></button>
                 </div>
             </div>
         </div>
 
-        <footer class="footer">
-            <div class="footertext">НАШИ СОЦСЕТИ :  </div>
-            <div class="footer__social">
-                <a class="a_href" href="#" >
-                    <i class="fa fa-twitter" />
-                    <i class="fa fa-facebook" />
-                    <i class="fa fa-instagram" />
+        <footer className="footer">
+            <div className="footertext">НАШИ СОЦСЕТИ :  </div>
+            <div className="footer__social">
+                <a className="a_href" href="#" >
+                    <i className="fa fa-twitter" />
+                    <i className="fa fa-facebook" />
+                    <i className="fa fa-instagram" />
                 </a>
             </div>
         </footer>
