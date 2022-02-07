@@ -37,7 +37,7 @@ function MoreButtons(props) {
 function ModalWindowMarker(props) {
 
     if (props.isOpen) {
-        return <ModalWindow text={"условно созданое модальное окно "} close={props.delfunc}/>
+        return <ModalWindow text={"условно созданое модальное окно "} close={props.delfunc} funcAddCard={props.funcAddCard}/>
     }
     return  null
 }
@@ -49,18 +49,22 @@ function App() {
     const [flasherMakeCard,setFlasherMakeCard] = useState(false);
 
 
-    const addCard = () => setOpen(true);
-    const delCard = () => setOpen(false);
+    const openModal = () => setOpen(true);
+    const closeModal = () => setOpen(false);
 
-    function makeNewCard() {
-        setFlasherMakeCard(flasherMakeCard ? false:true)
+    function makeNewCard(event, cardName="нет имени",cardText="нет текста") {
+
+        setFlasherMakeCard(!flasherMakeCard)
         console.log('переход на другую страницу')
-        cards.push( {id:4,name:"быт",text:"пригтовить ужин"})
+        console.log(cardName)
+        console.log(cardText)
+        cards.push( {id:4,name:cardName,text:cardText})
         console.log(cards)
+        closeModal()
     }
 
     function delLastCard() {
-        setFlasherMakeCard(flasherMakeCard ? false:true)
+        setFlasherMakeCard(!flasherMakeCard )
         console.log('изменение карточки')
         cards.pop()
     }
@@ -70,13 +74,13 @@ function App() {
         <div className="App">
             <div className="MainBody">
                 <div className="buttonsContainer">
-                    <MoreButtons numbers={[1, 2, 3, 4]} functions={[addCard, delCard, makeNewCard, delLastCard]}/>
+                    <MoreButtons numbers={[1, 2, 3, 4]} functions={[openModal, closeModal, makeNewCard, delLastCard]}/>
                 </div>
                 <div className="ModalWindowContainer">
                 </div>
 
             </div>
-            <ModalWindowMarker isOpen={open} delfunc={delCard}/>
+            <ModalWindowMarker isOpen={open} delfunc={closeModal}/>
         </div>*/
     <body>
     <div className="intro">
@@ -98,7 +102,7 @@ function App() {
 
         <div className="maincontant">
             <div className="buttonsmenu">
-                <MoreButtons numbers={[1, 2, 3, 4]} functions={[addCard, delCard, makeNewCard, delLastCard]}/>
+                <MoreButtons numbers={[1, 2, 3, 4]} functions={[openModal, closeModal, makeNewCard, delLastCard]}/>
             </div>
             <div className="cardcontainer">
                 <div className="cardcontent">
@@ -124,7 +128,7 @@ function App() {
         </footer>
 
         <div className="modalWindowContainer">
-            <ModalWindowMarker isOpen={open} delfunc={delCard}/>
+            <ModalWindowMarker isOpen={open} delfunc={closeModal} funcAddCard={makeNewCard}/>
     </div>
 
 
