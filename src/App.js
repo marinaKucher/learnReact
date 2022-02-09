@@ -4,6 +4,8 @@ import ModalWindow from "./modalWindow";
 import React, {useState} from 'react';
 import Card from "./Card";
 
+let listNumber=0
+const maxCardOnPage = 6
 let cards=
     [
         {id:1,name:"учеба",text:"написать курсовую,сделать домашку"},
@@ -12,12 +14,15 @@ let cards=
     ]
 
 function AllCards(props) {
+
     const cards = props.cards;
     const masOfCards = cards.map((card) =>
         <Card key={card.id.toString()} name={card.name} text={card.text}/>
     );
+    console.log(props.list,"  ",props.list+maxCardOnPage)
     return (
-        masOfCards
+        masOfCards.slice(props.list,props.list+maxCardOnPage)
+
     );
 }
 
@@ -42,8 +47,19 @@ function ModalWindowMarker(props) {
     return  null
 }
 
-
-
+function nextList(){
+   const maxListNumber =  Math.ceil(cards.length/maxCardOnPage)*maxCardOnPage
+    listNumber=listNumber+maxCardOnPage
+    if (listNumber >= maxListNumber) {
+    listNumber=maxListNumber-maxCardOnPage;
+    }
+}
+function lastList(){
+    listNumber=listNumber-maxCardOnPage
+    if (listNumber < 0) {
+        listNumber=0;
+    }
+}
 function App() {
     const [open, setOpen] = useState(false);
     const [flasherMakeCard,setFlasherMakeCard] = useState(false);
@@ -58,7 +74,7 @@ function App() {
         console.log('переход на другую страницу')
         console.log(cardName)
         console.log(cardText)
-        cards.push( {id:4,name:cardName,text:cardText})
+        cards.push( {id:cards.length+1,name:cardName,text:cardText})
         console.log(cards)
         closeModal()
     }
@@ -69,6 +85,14 @@ function App() {
         cards.pop()
     }
 
+    function nextListRender(){
+        nextList();
+        setFlasherMakeCard(!flasherMakeCard)
+    }
+    function lastListRender(){
+        lastList();
+        setFlasherMakeCard(!flasherMakeCard)
+    }
     return (
 /*
         <div className="App">
@@ -82,7 +106,6 @@ function App() {
             </div>
             <ModalWindowMarker isOpen={open} delfunc={closeModal}/>
         </div>*/
-    <body>
     <div className="intro">
 
         <header className="header">
@@ -106,12 +129,13 @@ function App() {
             </div>
             <div className="cardcontainer">
                 <div className="cardcontent">
-                    <AllCards cards={cards}/>
+                    <AllCards cards={cards} list={listNumber} />
 
 
                 </div>
                 <div className="cardfooter">
-                    <button className="cardfooterbutton">следующая страница с карточками ---></button>
+                    <button className="cardfooterbutton" onClick={nextListRender} >следующая страница с карточками </button>
+                    <button className="cardfooterbutton" onClick={lastListRender} >предыдущая страница с карточками </button>
                 </div>
             </div>
         </div>
@@ -133,7 +157,6 @@ function App() {
 
 
 </div>
-    </body>
     );
 }
 
