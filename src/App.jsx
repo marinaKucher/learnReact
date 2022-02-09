@@ -94,18 +94,7 @@ function App() {
         setFlasherMakeCard(!flasherMakeCard)
     }
     return (
-/*
-        <div className="App">
-            <div className="MainBody">
-                <div className="buttonsContainer">
-                    <MoreButtons numbers={[1, 2, 3, 4]} functions={[openModal, closeModal, makeNewCard, delLastCard]}/>
-                </div>
-                <div className="ModalWindowContainer">
-                </div>
 
-            </div>
-            <ModalWindowMarker isOpen={open} delfunc={closeModal}/>
-        </div>*/
     <div className="intro">
 
         <header className="header">
