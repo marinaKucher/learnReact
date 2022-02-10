@@ -3,24 +3,26 @@ import AddButton from "./AddButton";
 import ModalWindow from "./modalWindow";
 import React, {useState} from 'react';
 import Card from "./Card";
+//АЙДИ ТЕПЕРЬ НАДО СЧИТАТЬ ПО НОВОМУ Т К УДАЛИТЬ МОЖНО ЛЮБОЙ АЙДИ
+
 
 let listNumber=0
 const maxCardOnPage = 6
 let cards=
     [
-        {id:1,name:"учеба",text:"написать курсовую, сделать домашку"},
-        {id:2,name:"работа",text:"сделать задачу"},
-        {id:3,name:"быт",text:"пригтовить ужин"},
-        {id:4,name:"карточкадляизмеренияпереносовэтоважноо",text:"измерениепереносовэтооченьважобезнегомыникакненапишемнаш"}
+        {id:1,name:"пример1",text:"написать курсовую, сделать домашку"},
+        {id:2,name:"пример2",text:"сделать задачу"},
+        {id:3,name:"пример3",text:"пригтовить ужин"}
     ]
+
+let idNewCard=cards.length+1
 
 function AllCards(props) {
 
     const cards = props.cards;
     const masOfCards = cards.map((card) =>
-        <Card key={card.id.toString()} name={card.name} text={card.text}/>
+        <Card key={card.id.toString()} keyToDel={card.id} name={card.name} text={card.text} delThisCard={props.del}/>
     );
-    console.log(props.list,"  ",props.list+maxCardOnPage)
     return (
         masOfCards.slice(props.list,props.list+maxCardOnPage)
 
@@ -28,7 +30,7 @@ function AllCards(props) {
 }
 
 
-const buttonsTitles = ['добавить карточку', 'удалить карточку', 'создать новую карточку', 'удалить последню карточку']
+const buttonsTitles = ['добавить карточку', 'удалить все карточки', 'создать пустую карточку', 'в начало','в конец']
 
 function MoreButtons(props) {
     const numbers = props.numbers;
@@ -45,7 +47,10 @@ function ModalWindowMarker(props) {
     if (props.isOpen) {
         return <ModalWindow text={"Создание карточки"} close={props.delfunc} funcAddCard={props.funcAddCard}/>
     }
-    return  null
+    else {
+
+        return  null
+    }
 }
 
 function nextList(){
@@ -61,39 +66,70 @@ function lastList(){
         listNumber=0;
     }
 }
+
+function  delCardGlobal(cardID=2){
+    const valueId=cardID
+    //составляем идентичный массив только индексов
+    const masOfID = cards.map((card) =>
+       card.id
+    );
+    //находим в этом массиве номер элемента с текущим индеком
+    const  myIndex =masOfID.indexOf(valueId);
+    //удаляем элемент с текущим индексом
+    if (myIndex !== -1) {
+        cards.splice(myIndex, 1);
+    }
+}
+
 function App() {
     const [open, setOpen] = useState(false);
-    const [flasherMakeCard,setFlasherMakeCard] = useState(false);
+    const [flasher,setFlasher] = useState(false);
+
 
 
     const openModal = () => setOpen(true);
     const closeModal = () => setOpen(false);
 
+    function delAllCards (){
+        cards.splice(0,cards.length);
+        setFlasher(!flasher)
+        listNumber=0
+    }
+
     function makeNewCard(event, cardName="нет имени",cardText="нет текста") {
 
-        setFlasherMakeCard(!flasherMakeCard)
-        console.log('переход на другую страницу')
-        console.log(cardName)
-        console.log(cardText)
-        cards.push( {id:cards.length+1,name:cardName,text:cardText})
-        console.log(cards)
+        setFlasher(!flasher)
+        idNewCard=idNewCard+1
+        cards.push( {id:idNewCard,name:cardName,text:cardText})
         closeModal()
     }
 
-    function delLastCard() {
-        setFlasherMakeCard(!flasherMakeCard )
-        console.log('изменение карточки')
-        cards.pop()
+    function goToFirstList() {
+
+        listNumber=0
+        setFlasher(!flasher )
     }
+
+    function goToLastList(){
+        listNumber=(Math.ceil(cards.length/maxCardOnPage)-1)*maxCardOnPage
+        setFlasher(!flasher )
+    }
+
 
     function nextListRender(){
         nextList();
-        setFlasherMakeCard(!flasherMakeCard)
+        setFlasher(!flasher)
     }
     function lastListRender(){
         lastList();
-        setFlasherMakeCard(!flasherMakeCard)
+        setFlasher(!flasher)
     }
+
+    function delCard(value){
+        delCardGlobal(value)
+        setFlasher(!flasher)
+    }
+
     return (
 
     <div className="intro">
@@ -115,11 +151,11 @@ function App() {
 
         <div className="maincontant">
             <div className="buttonsmenu">
-                <MoreButtons numbers={[1, 2, 3, 4]} functions={[openModal, closeModal, makeNewCard, delLastCard]}/>
+                <MoreButtons numbers={[1, 2, 3, 4, 5]} functions={[openModal, delAllCards, makeNewCard,goToFirstList,goToLastList]}/>
             </div>
             <div className="cardcontainer">
                 <div className="cardcontent">
-                    <AllCards cards={cards} list={listNumber} />
+                    <AllCards cards={cards} list={listNumber} del={delCard} />
 
 
                 </div>
@@ -140,10 +176,8 @@ function App() {
                 </a>
             </div>
         </footer>
+        <ModalWindowMarker isOpen={open} delfunc={closeModal} funcAddCard={makeNewCard}/>
 
-        <div className="modalWindowContainer">
-            <ModalWindowMarker isOpen={open} delfunc={closeModal} funcAddCard={makeNewCard}/>
-    </div>
 
 
 </div>

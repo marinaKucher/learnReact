@@ -56,3 +56,22 @@
     text-align: center;
     font-size: 100%;
 }
+.cardButtons{
+    margin-bottom: 2%;
+    height: 25%;
+    background-color: rgba(85, 85, 85, 0.4);
+
+    border-width: 1px;
+    border-style: dashed;
+    border-color: white;
+
+    font-family: 'Antic Slab', serif;
+    font-size: 13px;
+    font-weight:100;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+.cardButtons:hover{
+    background-color: rgba(168, 167, 167, 0.4);
+}
