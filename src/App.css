@@ -387,9 +387,32 @@ h1,h2,h3,h4,h5,h6 {
 .cardfooterbutton:hover{
   background-color: rgba(49, 49, 49, 0.842);
 }
+
 .modalWindowContainer{
   position: absolute;
   z-index: 1000;
+  width: 55%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.allButtons{
   width: 50%;
-  height: 40%;
+margin-bottom: 2%;
+  background-color: rgba(85, 85, 85, 0.4);
+
+  border-width: 1px;
+  border-style: dashed;
+  border-color: white;
+
+  font-family: 'Antic Slab', serif;
+  font-size: 13px;
+  font-weight:100;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
 }

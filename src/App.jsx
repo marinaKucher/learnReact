@@ -8,9 +8,10 @@ let listNumber=0
 const maxCardOnPage = 6
 let cards=
     [
-        {id:1,name:"учеба",text:"написать курсовую,сделать домашку"},
+        {id:1,name:"учеба",text:"написать курсовую, сделать домашку"},
         {id:2,name:"работа",text:"сделать задачу"},
-        {id:3,name:"быт",text:"пригтовить ужин"}
+        {id:3,name:"быт",text:"пригтовить ужин"},
+        {id:4,name:"карточкадляизмеренияпереносовэтоважноо",text:"измерениепереносовэтооченьважобезнегомыникакненапишемнаш"}
     ]
 
 function AllCards(props) {
@@ -42,7 +43,7 @@ function MoreButtons(props) {
 function ModalWindowMarker(props) {
 
     if (props.isOpen) {
-        return <ModalWindow text={"условно созданое модальное окно "} close={props.delfunc} funcAddCard={props.funcAddCard}/>
+        return <ModalWindow text={"Создание карточки"} close={props.delfunc} funcAddCard={props.funcAddCard}/>
     }
     return  null
 }

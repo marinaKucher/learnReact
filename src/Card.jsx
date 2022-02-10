@@ -1,9 +1,13 @@
 import './Card.css';
 function Card(props){
     return (
-        <div className="card">
-            <h2>{props.name}</h2>
-            <h3>{props.text}</h3>
+        <div className="card" >
+            <div className="cardTextContainer">
+                <span className="cardText1">{props.name}</span>
+                <span className="cardText2" >{props.text}</span>
+            </div>
+
+            <button className="allButtons" >удалить</button>
         </div>
     )
 
